@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JayFox</title>
+  <link rel="icon" href="logo.jpg" type="image/jpeg">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #ff4800, #000000, #0077ff);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    .profile {
+      margin-top: 40px;
+    }
+
+    .profile img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .status {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    /* Redes sociales circulares */
+    .socials {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .socials a {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      background: #ff0080;
+      transform: scale(1.1);
+    }
+
+    /* Links con imágenes */
+    .links {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .link-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .link-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .link-card img {
+      width: 90px;
+      margin-bottom: 10px;
+    }
+
+    .link-card a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Perfil -->
+  <div class="profile">
+    <img src="logo.jpg" alt="Logo de Jayfox">
+    <div class="name">JAYFOX</div>
+    <div class="status">STREAMER 🎮 | 🇩🇴 Dominican Republic</div>
+  </div>
+
+  <!-- Redes Sociales -->
+  <div class="socials">
+    <a target="_blank" href="https://www.instagram.com/jayfox___?igsh=MWY2a25qNzc0eHBtYw%3D%3D&utm_source=qr "><i class="fab fa-instagram"></i></a>
+    <a target="_blank" href="https://kick.com/jayfoxtv"><i class="fab fa-twitch"></i></a>
+    <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+    <a target="_blank" href="https://www.tiktok.com/@jayfoxxxtv?_t=ZS-8zQQz0K5PPz&_r=1"><i class="fab fa-tiktok"></i></a>
+    <a target="_blank" href="https://www.youtube.com/@Jayfoxxtv"><i class="fab fa-youtube"></i></a>
+    <a target="_blank" href="https://www.facebook.com/share/19esq7Avge/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+    <a target="_blank" href="https://discord.gg/5EPvJXud"><i class="fab fa-discord"></i></a>
+  </div>
+
+  <!-- Links con logos -->
+  <div class="links">
+    <div class="link-card">
+      <img src="kick.png" alt="Kick Logo">
+      <a href="#">Kick</a>
+    </div>
+    <div class="link-card">
+      <img src="twitch.png" alt="Twitch Logo">
+      <a href="#">Twitch</a>
+    </div>
+    <div class="link-card">
+      <img src="yt.png" alt="YouTube Logo">
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+</body>
+</html>
