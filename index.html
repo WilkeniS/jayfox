@@ -1,148 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JayFox</title>
-  <link rel="icon" href="logo.jpg" type="image/jpeg">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #ff4800, #000000, #0077ff);
-      color: white;
-      text-align: center;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JayFox</title>
+<link rel="icon" href="logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Fuente estilo digital -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #000;
+    position: relative;
+  }
 
-    .profile {
-      margin-top: 40px;
-    }
+  canvas#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
 
-    .profile img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 4px solid white;
-      object-fit: cover;
-    }
+  /* ---------- Perfil ---------- */
+  .profile {
+    margin-top: 40px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+  }
 
-    .name {
-      font-size: 28px;
-      font-weight: bold;
-      margin-top: 15px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+  .profile img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid white;
+    object-fit: cover;
+  }
 
-    .status {
-      display: inline-block;
-      background: #fff;
-      color: #000;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 14px;
-      margin-top: 8px;
-    }
+  /* ---------- Nombre mejorado ---------- */
+  .name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 15px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffea00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: neonText 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffea00;
+  }
 
-    /* Redes sociales circulares */
-    .socials {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+  @keyframes neonText {
+    0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff, 0 0 15px #ffea00; }
+    50% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffea00; }
+    100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff, 0 0 15px #ffea00; }
+  }
 
-    .socials a {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      text-decoration: none;
-      color: white;
-      transition: 0.3s;
-    }
+  .status {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
 
-    .socials a:hover {
-      background: #ff0080;
-      transform: scale(1.1);
-    }
+  /* ---------- Redes sociales ---------- */
+  .socials {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    z-index: 2;
+    position: relative;
+  }
 
-    /* Links con imágenes */
-    .links {
-      margin: 40px auto;
-      width: 90%;
-      max-width: 400px;
-    }
+  .socials a {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #fff;
+  }
 
-    .link-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      text-align: center;
-      transition: 0.3s;
-    }
+  .socials a:hover {
+    background: #ff0080;
+    transform: scale(1.2);
+    box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+  }
 
-    .link-card:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
-    }
+  /* ---------- Links con logos ---------- */
+  .links {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    z-index: 2;
+    position: relative;
+  }
 
-    .link-card img {
-      width: 90px;
-      margin-bottom: 10px;
-    }
+  .link-card {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    width: 130px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffea00;
+    animation: glowPulse 3s infinite alternate;
+  }
 
-    .link-card a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      margin-top: 5px;
-    }
-  </style>
+  .link-card img {
+    width: 60px;
+    margin-bottom: 10px;
+    transition: transform 0.3s, filter 0.3s;
+    filter: drop-shadow(0 0 5px #ff00ff) drop-shadow(0 0 10px #00ffff);
+    animation: logoGlow 3s infinite alternate;
+  }
+
+  .link-card span {
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 15px #00ffff;
+  }
+
+  .link-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 25px #ff00ff, 0 0 50px #00ffff, 0 0 75px #ffea00;
+  }
+
+  .link-card:hover img {
+    transform: scale(1.2) rotate(-5deg);
+    filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 20px #00ffff);
+  }
+
+  @keyframes glowPulse {
+    0% { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffea00; }
+    50% { box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffea00; }
+    100% { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ffea00; }
+  }
+
+  @keyframes logoGlow {
+    0% { filter: drop-shadow(0 0 5px #ff00ff) drop-shadow(0 0 10px #00ffff); }
+    50% { filter: drop-shadow(0 0 10px #ff00ff) drop-shadow(0 0 20px #00ffff); }
+    100% { filter: drop-shadow(0 0 5px #ff00ff) drop-shadow(0 0 10px #00ffff); }
+  }
+
+  @media (max-width: 500px) {
+    .link-card { width: 100px; padding: 15px; }
+    .link-card img { width: 50px; }
+    .link-card span { font-size: 14px; }
+    .name { font-size: 36px; }
+  }
+</style>
 </head>
 <body>
-  <!-- Perfil -->
-  <div class="profile">
-    <img src="logo.jpg" alt="Logo de Jayfox">
-    <div class="name">JAYFOX</div>
-    <div class="status">STREAMER 🎮 | 🇩🇴 Dominican Republic</div>
-  </div>
+<canvas id="bgCanvas"></canvas>
 
-  <!-- Redes Sociales -->
-  <div class="socials">
-    <a target="_blank" href="https://www.instagram.com/jayfox___?igsh=MWY2a25qNzc0eHBtYw%3D%3D&utm_source=qr "><i class="fab fa-instagram"></i></a>
-    <a target="_blank" href="https://kick.com/jayfoxtv"><i class="fab fa-twitch"></i></a>
-    <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
-    <a target="_blank" href="https://www.tiktok.com/@jayfoxxxtv?_t=ZS-8zQQz0K5PPz&_r=1"><i class="fab fa-tiktok"></i></a>
-    <a target="_blank" href="https://www.youtube.com/@Jayfoxxtv"><i class="fab fa-youtube"></i></a>
-    <a target="_blank" href="https://www.facebook.com/share/19esq7Avge/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
-    <a target="_blank" href="https://discord.gg/5EPvJXud"><i class="fab fa-discord"></i></a>
-  </div>
+<div class="profile">
+  <img src="logo.jpg" alt="Logo de Jayfox">
+  <div class="name">JAYFOX</div>
+  <div class="status">STREAMER 🎮 | 🇩🇴 Dominican Republic</div>
+</div>
 
-  <!-- Links con logos -->
-  <div class="links">
-    <div class="link-card">
-      <img src="kick.png" alt="Kick Logo">
-      <a href="#">Kick</a>
-    </div>
-    <div class="link-card">
-      <img src="twitch.png" alt="Twitch Logo">
-      <a href="#">Twitch</a>
-    </div>
-    <div class="link-card">
-      <img src="yt.png" alt="YouTube Logo">
-      <a href="#">YouTube</a>
-    </div>
-  </div>
+<div class="socials">
+  <a target="_blank" href="https://www.instagram.com/jayfox___"><i class="fab fa-instagram"></i></a>
+  <a target="_blank" href="https://kick.com/jayfoxtv"><i class="fab fa-twitch"></i></a>
+  <a target="_blank" href="https://www.tiktok.com/@jayfoxxxtv"><i class="fab fa-tiktok"></i></a>
+  <a target="_blank" href="https://www.youtube.com/@Jayfoxxtv"><i class="fab fa-youtube"></i></a>
+  <a target="_blank" href="https://www.facebook.com/share/19esq7Avge/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+  <a target="_blank" href="https://discord.gg/5EPvJXud"><i class="fab fa-discord"></i></a>
+</div>
+
+<div class="links">
+  <a class="link-card" href="https://kick.com/jayfoxtv" target="_blank">
+    <img src="kick.png" alt="Kick Logo">
+    <span>Kick</span>
+  </a>
+  <a class="link-card" href="https://twitch.com/jayfoxtv" target="_blank">
+    <img src="twitch.png" alt="Twitch Logo">
+    <span>Twitch</span>
+  </a>
+  <a class="link-card" href="https://youtube.com/@Jayfoxxtv" target="_blank">
+    <img src="yt.png" alt="YouTube Logo">
+    <span>YouTube</span>
+  </a>
+</div>
+
+<script>
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const objects = [];
+  for(let i=0;i<80;i++){
+    objects.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      size: Math.random()*20+10,
+      speedX: Math.random()*1-0.5,
+      speedY: Math.random()*1-0.5,
+      type: Math.random()>0.5?'line':'circle',
+      color: `hsl(${Math.random()*360},80%,60%)`
+    });
+  }
+
+  function drawObj(obj){
+    ctx.fillStyle = obj.color;
+    ctx.strokeStyle = obj.color;
+    ctx.lineWidth = 2;
+    if(obj.type==='circle'){
+      ctx.beginPath();
+      ctx.arc(obj.x,obj.y,obj.size/3,0,Math.PI*2);
+      ctx.fill();
+    }else{
+      ctx.beginPath();
+      ctx.moveTo(obj.x,obj.y);
+      ctx.lineTo(obj.x+obj.size,obj.y+obj.size);
+      ctx.stroke();
+    }
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let obj of objects){
+      obj.x+=obj.speedX;
+      obj.y+=obj.speedY;
+      if(obj.x<0)obj.x=canvas.width;
+      if(obj.x>canvas.width)obj.x=0;
+      if(obj.y<0)obj.y=canvas.height;
+      if(obj.y>canvas.height)obj.y=0;
+      drawObj(obj);
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize',()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
 </body>
 </html>
